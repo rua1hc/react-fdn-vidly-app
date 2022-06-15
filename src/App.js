@@ -1,6 +1,8 @@
 // import logo from './logo.svg';
 import "./App.css";
 
+import Movies from "./comps/movies";
+
 function App() {
     return (
         // <div className="App">
@@ -20,7 +22,7 @@ function App() {
         //   </header>
         // </div>
         <main>
-            <h1>Hello from Mimi!</h1>
+            <Movies />
         </main>
     );
 }
