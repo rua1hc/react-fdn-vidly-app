@@ -7,10 +7,7 @@ import Movies from "./comps/movies";
 
 class App extends Component {
     // state = {
-    //     isFavorite: true,
     // };
-
-    // handleLike = () => {};
 
     render() {
         return (
