@@ -6,7 +6,9 @@ class Pagination extends Component {
     // state = {  }
 
     render() {
-        const { totalItems, pageSize } = this.props;
+        const { totalItems, pageSize, currentPage, onPageChange } = this.props;
+        console.log(currentPage);
+
         const pagesCount = Math.ceil(totalItems / pageSize);
         if (pagesCount === 1) return null;
         const pages = _.range(1, pagesCount + 1);
@@ -17,10 +19,17 @@ class Pagination extends Component {
                     {/* <li className="page-item"><a className="page-link" href="#">Previous</a></li> */}
 
                     {pages.map((page) => (
-                        <li key={page} className="page-item">
+                        <li
+                            key={page}
+                            className={
+                                page === currentPage
+                                    ? "page-item active"
+                                    : "page-item"
+                            }
+                        >
                             <a
                                 className="page-link"
-                                onClick={() => this.props.onPageChange(page)}
+                                onClick={() => onPageChange(page)}
                             >
                                 {page}
                             </a>
