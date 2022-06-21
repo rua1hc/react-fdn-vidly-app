@@ -15,7 +15,6 @@ class Movies extends Component {
         currentPage: 1,
 
         genres: [],
-        currentListGroup: "All Genres",
     };
 
     componentDidMount() {
@@ -42,20 +41,20 @@ class Movies extends Component {
     };
 
     handleGenreSelect = (genre) => {
-        this.setState({ currentListGroup: genre.name });
+        this.setState({ selectedGenre: genre });
         // console.log(genre);
     };
 
     render() {
         const { length: count } = this.state.movies;
         const { pageSize, currentPage, movies: allMovies } = this.state;
-        const { genres, currentListGroup } = this.state;
+        const { genres, selectedGenre } = this.state;
 
-        const movies_genres = allMovies.filter(
-            (movie) => movie.genre.name === currentListGroup
-        );
+        const filtered = selectedGenre
+            ? allMovies.filter((movie) => movie.genre._id === selectedGenre._id)
+            : allMovies;
 
-        const movies = paginate(movies_genres, currentPage, pageSize);
+        const movies = paginate(filtered, currentPage, pageSize);
         // const movies2 = paginate2(allMovies, currentPage, pageSize);
 
         if (count === 0) return <p>No movies found!</p>;
@@ -64,13 +63,13 @@ class Movies extends Component {
             <div className="row">
                 <div className="col-3">
                     <ListGroup
-                        genres={genres}
-                        currentListGroup={currentListGroup}
-                        onListGroupSelect={this.handleGenreSelect}
+                        items={genres}
+                        selectedItem={selectedGenre}
+                        onItemSelect={this.handleGenreSelect}
                     />
                 </div>
                 <div className="col">
-                    <p>Showing {count} movies in DB.</p>
+                    <p>Showing {filtered.length} movies in DB.</p>
 
                     <table className="table">
                         <thead>
@@ -116,7 +115,7 @@ class Movies extends Component {
                     </table>
 
                     <Pagination
-                        totalItems={count}
+                        totalItems={filtered.length}
                         pageSize={pageSize}
                         currentPage={currentPage}
                         onPageChange={this.handlePageChange}

@@ -4,28 +4,28 @@ class ListGroup extends Component {
     // state = {  }
     render() {
         const {
-            genres,
+            items,
             textProperty,
             valueProperty,
-            currentListGroup,
-            onListGroupSelect,
+            selectedItem,
+            onItemSelect,
         } = this.props;
-        // console.log(genres);
+        // console.log(items);
 
         return (
             <ul className="list-group">
                 {/* <li className="list-group-item">All Genres</li> */}
-                {genres.map((genre) => (
+                {items.map((item) => (
                     <li
-                        key={genre[valueProperty]}
+                        key={item[valueProperty]}
                         className={
-                            currentListGroup === genre
+                            selectedItem === item
                                 ? "list-group-item active"
                                 : "list-group-item"
                         }
-                        onClick={() => onListGroupSelect(genre)}
+                        onClick={() => onItemSelect(item)}
                     >
-                        {genre[textProperty]}
+                        {item[textProperty]}
                     </li>
                 ))}
             </ul>
