@@ -3,7 +3,13 @@ import React, { Component } from "react";
 class ListGroup extends Component {
     // state = {  }
     render() {
-        const { genres, currentListGroup, onListGroupSelect } = this.props;
+        const {
+            genres,
+            textProperty,
+            valueProperty,
+            currentListGroup,
+            onListGroupSelect,
+        } = this.props;
         // console.log(genres);
 
         return (
@@ -11,6 +17,7 @@ class ListGroup extends Component {
                 {/* <li className="list-group-item">All Genres</li> */}
                 {genres.map((genre) => (
                     <li
+                        key={genre[valueProperty]}
                         className={
                             currentListGroup === genre
                                 ? "list-group-item active"
@@ -18,7 +25,7 @@ class ListGroup extends Component {
                         }
                         onClick={() => onListGroupSelect(genre)}
                     >
-                        {genre.name}
+                        {genre[textProperty]}
                     </li>
                 ))}
             </ul>

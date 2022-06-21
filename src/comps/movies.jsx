@@ -42,7 +42,7 @@ class Movies extends Component {
     };
 
     handleGenreSelect = (genre) => {
-        this.setState({ currentListGroup: genre });
+        this.setState({ currentListGroup: genre.name });
         // console.log(genre);
     };
 
@@ -51,7 +51,11 @@ class Movies extends Component {
         const { pageSize, currentPage, movies: allMovies } = this.state;
         const { genres, currentListGroup } = this.state;
 
-        const movies = paginate(allMovies, currentPage, pageSize);
+        const movies_genres = allMovies.filter(
+            (movie) => movie.genre.name === currentListGroup
+        );
+
+        const movies = paginate(movies_genres, currentPage, pageSize);
         // const movies2 = paginate2(allMovies, currentPage, pageSize);
 
         if (count === 0) return <p>No movies found!</p>;
@@ -61,6 +65,8 @@ class Movies extends Component {
                 <div className="col-3">
                     <ListGroup
                         genres={genres}
+                        textProperty="name"
+                        valueProperty="_id"
                         currentListGroup={currentListGroup}
                         onListGroupSelect={this.handleGenreSelect}
                     />
