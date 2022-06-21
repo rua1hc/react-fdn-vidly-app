@@ -17,7 +17,7 @@ class ListGroup extends Component {
                 {/* <li className="list-group-item">All Genres</li> */}
                 {items.map((item) => (
                     <li
-                        key={item[valueProperty]}
+                        key={item[textProperty]}
                         className={
                             selectedItem === item
                                 ? "list-group-item active"
