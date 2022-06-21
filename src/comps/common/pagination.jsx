@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import PropTypes from "prop-types";
 import _ from "lodash";
 
 class Pagination extends Component {
@@ -7,7 +8,7 @@ class Pagination extends Component {
 
     render() {
         const { totalItems, pageSize, currentPage, onPageChange } = this.props;
-        console.log(currentPage);
+        // console.log(currentPage);
 
         const pagesCount = Math.ceil(totalItems / pageSize);
         if (pagesCount === 1) return null;

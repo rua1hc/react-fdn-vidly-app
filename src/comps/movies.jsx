@@ -4,6 +4,7 @@ import { getMovies } from "../services/fakeMovieService";
 
 import Like from "./common/like";
 import Pagination from "./common/pagination";
+import { paginate, paginate2 } from "./utils/paginate";
 
 class Movies extends Component {
     state = {
@@ -33,7 +34,10 @@ class Movies extends Component {
 
     render() {
         const { length: count } = this.state.movies;
-        const { pageSize, currentPage } = this.state;
+        const { pageSize, currentPage, movies: allMovies } = this.state;
+
+        const movies = paginate(allMovies, currentPage, pageSize);
+        // const movies2 = paginate2(allMovies, currentPage, pageSize);
 
         if (count === 0) return <p>No movies found!</p>;
 
@@ -53,7 +57,7 @@ class Movies extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.movies.map((movie) => (
+                        {movies.map((movie) => (
                             <tr key={movie._id}>
                                 <td>{movie.title}</td>
                                 <td>{movie.genre.name}</td>
