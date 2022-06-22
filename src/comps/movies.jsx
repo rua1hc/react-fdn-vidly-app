@@ -9,6 +9,7 @@ import Pagination from "./common/pagination";
 import { paginate, paginate2 } from "./utils/paginate";
 
 import MoviesTable from "./moviesTable";
+import _ from "lodash";
 
 class Movies extends Component {
     state = {
@@ -17,6 +18,8 @@ class Movies extends Component {
         currentPage: 1,
 
         genres: [],
+
+        sortColumn: { path: "title", order: "asc" },
     };
 
     componentDidMount() {
@@ -48,14 +51,22 @@ class Movies extends Component {
         // console.log(genre);
     };
 
-    handleSort = (path) => {
-        console.log(path);
+    handleSort = (sortColumn) => {
+        this.setState({ sortColumn });
+        // console.log(path);
     };
 
     render() {
         const { length: count } = this.state.movies;
-        const { pageSize, currentPage, movies: allMovies } = this.state;
-        const { genres, selectedGenre } = this.state;
+        const {
+            pageSize,
+            currentPage,
+            movies: allMovies,
+            genres,
+            selectedGenre,
+            sortColumn,
+        } = this.state;
+        // const { genres, selectedGenre, sortColumn } = this.state;
 
         const filtered =
             selectedGenre && selectedGenre._id
@@ -64,7 +75,13 @@ class Movies extends Component {
                   )
                 : allMovies;
 
-        const movies = paginate(filtered, currentPage, pageSize);
+        const sorted = _.orderBy(
+            filtered,
+            [sortColumn.path],
+            [sortColumn.order]
+        );
+
+        const movies = paginate(sorted, currentPage, pageSize);
         // const movies2 = paginate2(allMovies, currentPage, pageSize);
 
         if (count === 0) return <p>No movies found!</p>;
@@ -83,6 +100,7 @@ class Movies extends Component {
 
                     <MoviesTable
                         movies={movies}
+                        sortColumn={sortColumn}
                         onLike={this.handleLike}
                         onDelete={this.handleDelete}
                         onSort={this.handleSort}
