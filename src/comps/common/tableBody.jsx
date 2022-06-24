@@ -2,8 +2,19 @@ import React, { Component } from "react";
 
 import Like from "./like";
 
+import _ from "lodash";
+
 class TableBody extends Component {
     // state = {  }
+
+    renderCell = (item, col) => {
+        if (col.content) {
+            return col.content(item);
+        }
+
+        return _.get(item, col.path);
+    };
+
     render() {
         const { data, columns, onLike, onDelete } = this.props;
 
@@ -12,7 +23,9 @@ class TableBody extends Component {
                 {data.map((item) => (
                     <tr key={item._id}>
                         {columns.map((col) => (
-                            <td>{item[col.path]}</td>
+                            <td key={col.path || col.key}>
+                                {this.renderCell(item, col)}
+                            </td>
                         ))}
                     </tr>
                 ))}

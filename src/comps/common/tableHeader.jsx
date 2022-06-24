@@ -17,12 +17,12 @@ class TableHeader extends Component {
         return (
             <thead>
                 <tr>
-                    {columns.map((c) => (
+                    {columns.map((col) => (
                         <th
-                            key={c.path || c.unused}
-                            onClick={() => this.raiseSort(c.path)}
+                            key={col.path || col.key}
+                            onClick={() => this.raiseSort(col.path)}
                         >
-                            {c.label}
+                            {col.label}
                         </th>
                     ))}
                 </tr>
