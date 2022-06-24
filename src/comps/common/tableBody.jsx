@@ -15,6 +15,10 @@ class TableBody extends Component {
         return _.get(item, col.path);
     };
 
+    createCustomeKey = (item, col) => {
+        return item._id + (col.path || col.key);
+    };
+
     render() {
         const { data, columns, onLike, onDelete } = this.props;
 
@@ -23,7 +27,7 @@ class TableBody extends Component {
                 {data.map((item) => (
                     <tr key={item._id}>
                         {columns.map((col) => (
-                            <td key={col.path || col.key}>
+                            <td key={this.createCustomeKey(item, col)}>
                                 {this.renderCell(item, col)}
                             </td>
                         ))}
