@@ -9,11 +9,19 @@ class MovieForm extends Component {
     };
 
     render() {
+        const { match, history } = this.props;
+
         return (
             <div>
-                <h1>Movie Form - {this.props.match.params.id}</h1>
+                <h1>Movie Form - {match.params.id}</h1>
                 <button className=" btn btn-primary" onClick={this.handleSave}>
                     Save
+                </button>
+                <button
+                    className=" btn btn-primary m-1"
+                    onClick={() => history.push("/movies")}
+                >
+                    Save1
                 </button>
             </div>
         );

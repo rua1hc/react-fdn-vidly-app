@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 import _ from "lodash";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 class TableBody extends Component {
     // state = {  }
@@ -14,11 +14,11 @@ class TableBody extends Component {
             return col.content(item);
         }
 
-        if (col.path === "title") {
-            return (
-                <Link to={`/movies/${item._id}`}>{_.get(item, col.path)}</Link>
-            );
-        }
+        // if (col.path === "title") {
+        //     return (
+        //         <Link to={`/movies/${item._id}`}>{_.get(item, col.path)}</Link>
+        //     );
+        // }
 
         return _.get(item, col.path);
     };
