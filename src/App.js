@@ -1,19 +1,36 @@
 import React, { Component } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 // import logo from './logo.svg';
 import "./App.css";
 
 import Movies from "./comps/movies";
 
+import NavBar from "./comps/navbar";
+import Customers from "./comps/customers";
+import NotFound from "./comps/not-found";
+import Rentals from "./comps/rentals";
+import MovieForm from "./comps/movieForm";
+
 class App extends Component {
-    // state = {
-    // };
+    // state = {};
 
     render() {
         return (
-            <main>
-                <Movies />
-            </main>
+            <div>
+                <NavBar />
+                <main>
+                    <Switch>
+                        <Route path="/movies/:id" component={MovieForm} />
+                        <Route path="/movies" component={Movies} />
+                        <Route path="/customers" component={Customers} />
+                        <Route path="/rentals" component={Rentals} />
+                        <Route path="/not-found" component={NotFound} />
+                        <Route path="/" exact component={Movies} />
+                        <Redirect to="/not-found" />
+                    </Switch>
+                </main>
+            </div>
         );
     }
 }

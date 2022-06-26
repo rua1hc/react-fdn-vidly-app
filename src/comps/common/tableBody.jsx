@@ -4,12 +4,20 @@ import React, { Component } from "react";
 
 import _ from "lodash";
 
+import { Link } from "react-router-dom";
+
 class TableBody extends Component {
     // state = {  }
 
     renderCell = (item, col) => {
         if (col.content) {
             return col.content(item);
+        }
+
+        if (col.path === "title") {
+            return (
+                <Link to={`/movies/${item._id}`}>{_.get(item, col.path)}</Link>
+            );
         }
 
         return _.get(item, col.path);

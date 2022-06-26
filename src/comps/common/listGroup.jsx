@@ -6,7 +6,7 @@ class ListGroup extends Component {
         const {
             items,
             textProperty,
-            valueProperty,
+            // valueProperty,
             selectedItem,
             onItemSelect,
         } = this.props;

@@ -102,6 +102,7 @@ class Movies extends Component {
                         onItemSelect={this.handleGenreSelect}
                     />
                 </div>
+
                 <div className="col">
                     <p>Showing {totalCount} movies in DB.</p>
 
