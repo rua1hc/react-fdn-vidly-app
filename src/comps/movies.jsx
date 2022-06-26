@@ -79,7 +79,7 @@ class Movies extends Component {
         );
 
         const movies = paginate(sorted, currentPage, pageSize);
-        // const movies2 = paginate2(allMovies, currentPage, pageSize);
+        paginate2(allMovies, currentPage, pageSize);
 
         return { totalCount: filtered.length, data: movies };
     };

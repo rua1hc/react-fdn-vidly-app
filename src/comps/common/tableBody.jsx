@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Like from "./like";
+// import Like from "./like";
 
 import _ from "lodash";
 
@@ -20,7 +20,7 @@ class TableBody extends Component {
     };
 
     render() {
-        const { data, columns, onLike, onDelete } = this.props;
+        const { data, columns } = this.props;
 
         return (
             <tbody>

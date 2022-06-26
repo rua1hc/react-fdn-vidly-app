@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import Like from "./common/like";
 
 import Table from "./common/table";
-import TableHeader from "./common/tableHeader";
-import TableBody from "./common/tableBody";
+// import TableHeader from "./common/tableHeader";
+// import TableBody from "./common/tableBody";
 
 class MoviesTable extends Component {
     columns = [
