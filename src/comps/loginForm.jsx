@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Input from "./common/input";
 
 class loginForm extends Component {
     state = {
@@ -36,21 +37,33 @@ class loginForm extends Component {
                 <h1>Login</h1>
 
                 <form onSubmit={this.handleSubmit}>
-                    <div className="mb-3">
-                        <label htmlFor="username" className="form-label">
-                            Username
-                        </label>
-                        <input
-                            value={account.username}
-                            onChange={this.handleChange}
-                            name="username"
-                            // ref={this.username}
-                            id="username"
-                            type="text"
-                            className="form-control"
-                        />
-                    </div>
-                    <div className="mb-3">
+                    <Input
+                        name="username"
+                        label="Username"
+                        value={account.username}
+                        onChange={this.handleChange}
+                    />
+                    <Input
+                        name="password"
+                        label="Password"
+                        value={account.password}
+                        onChange={this.handleChange}
+                    />
+                    {/* <div className="mb-3">
+                         <label htmlFor="username" className="form-label">
+                             Username
+                         </label>
+                         <input
+                             value={account.username}
+                             onChange={this.handleChange}
+                             name="username"
+                             // ref={this.username}
+                             id="username"
+                             type="text"
+                             className="form-control"
+                         />
+                     </div> */}
+                    {/* <div className="mb-3">
                         <label htmlFor="password" className="form-label">
                             Password
                         </label>
@@ -63,7 +76,7 @@ class loginForm extends Component {
                             type="text"
                             className="form-control"
                         />
-                    </div>
+                    </div> */}
                     <button className="btn btn-primary">Login</button>
                 </form>
             </div>
