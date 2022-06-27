@@ -10,7 +10,7 @@ const Input = ({ name, label, value, onChange }) => {
                 value={value}
                 onChange={onChange}
                 name={name}
-                // ref={this.username}
+                // ref={this.React_username}
                 id={name}
                 type="text"
                 className="form-control"

@@ -7,22 +7,43 @@ class loginForm extends Component {
             username: "",
             password: "",
         },
+        errors: {},
     };
 
-    // username = React.createRef();
+    // React_username = React.createRef();
     // componentDidMount() {
-    //     this.username.current.focus();
+    //     this.React_username.current.focus();
     // }
+
+    validate = () => {
+        const { account } = this.state;
+
+        let errors = {};
+        if (account.username.trim() === "") {
+            errors.username = "Username is required!";
+        }
+        if (account.password.trim() === "") {
+            errors.password = "Password is required!";
+        }
+
+        return Object.keys(errors).length === 0 ? null : errors;
+    };
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-        // const username = document.getElementById("username").value;
-        const username = this.username.current.value;
+        // const DOM_username = document.getElementById("username").value;
+        // const username = this.React_username.current.value;
+
+        const errors = this.validate();
+        console.log(errors);
+        this.setState({ errors });
+        if (errors) return;
 
         console.log("Submit preventDefault");
     };
 
+    // handleChange = (e) => {
     handleChange = ({ currentTarget: input }) => {
         let account = { ...this.state.account };
         // account.username = e.currentTarget.value;
@@ -57,7 +78,7 @@ class loginForm extends Component {
                              value={account.username}
                              onChange={this.handleChange}
                              name="username"
-                             // ref={this.username}
+                             // ref={this.React_username}
                              id="username"
                              type="text"
                              className="form-control"
