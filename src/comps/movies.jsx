@@ -38,7 +38,7 @@ class Movies extends Component {
         movies[movieID] = { ...movie };
         movies[movieID].liked = !movies[movieID].liked;
         this.setState({ movies });
-        // console.log("like clicked");
+        // console.log(movieID);
     };
 
     handlePageChange = (page) => {

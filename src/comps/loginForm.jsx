@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 
 class loginForm extends Component {
-    // state = {  }
+    state = {
+        account: {
+            username: "",
+            password: "",
+        },
+    };
 
     // username = React.createRef();
     // componentDidMount() {
@@ -17,6 +22,12 @@ class loginForm extends Component {
         console.log("Submit preventDefault");
     };
 
+    handleChange = (e) => {
+        let account = { ...this.state.account };
+        account.username = e.currentTarget.value;
+        this.setState({ account });
+    };
+
     render() {
         return (
             <div className="container">
@@ -28,6 +39,8 @@ class loginForm extends Component {
                             Username
                         </label>
                         <input
+                            value={this.state.account.username}
+                            onChange={this.handleChange}
                             // ref={this.username}
                             id="username"
                             type="text"
@@ -49,11 +62,6 @@ class loginForm extends Component {
                 </form>
             </div>
         );
-
-        // return (
-        //     <div>
-        //     </div>
-        // );
     }
 }
 
