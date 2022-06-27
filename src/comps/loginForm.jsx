@@ -3,8 +3,16 @@ import React, { Component } from "react";
 class loginForm extends Component {
     // state = {  }
 
+    // username = React.createRef();
+    // componentDidMount() {
+    //     this.username.current.focus();
+    // }
+
     handleSubmit = (e) => {
         e.preventDefault();
+
+        // const username = document.getElementById("username").value;
+        const username = this.username.current.value;
 
         console.log("Submit preventDefault");
     };
@@ -20,6 +28,7 @@ class loginForm extends Component {
                             Username
                         </label>
                         <input
+                            // ref={this.username}
                             id="username"
                             type="text"
                             className="form-control"
@@ -30,6 +39,7 @@ class loginForm extends Component {
                             Password
                         </label>
                         <input
+                            autoFocus
                             id="password"
                             type="text"
                             className="form-control"
