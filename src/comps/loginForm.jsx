@@ -2,12 +2,19 @@ import React, { Component } from "react";
 
 class loginForm extends Component {
     // state = {  }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log("Submit preventDefault");
+    };
+
     render() {
         return (
             <div className="container">
                 <h1>Login</h1>
 
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="username" className="form-label">
                             Username
