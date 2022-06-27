@@ -36,8 +36,7 @@ class loginForm extends Component {
         // const username = this.React_username.current.value;
 
         const errors = this.validate();
-        console.log(errors);
-        this.setState({ errors });
+        this.setState({ errors: errors || {} });
         if (errors) return;
 
         console.log("Submit preventDefault");
@@ -52,7 +51,7 @@ class loginForm extends Component {
     };
 
     render() {
-        const { account } = this.state;
+        const { account, errors } = this.state;
         return (
             <div className="container">
                 <h1>Login</h1>
@@ -63,12 +62,14 @@ class loginForm extends Component {
                         label="Username"
                         value={account.username}
                         onChange={this.handleChange}
+                        error={errors.username}
                     />
                     <Input
                         name="password"
                         label="Password"
                         value={account.password}
                         onChange={this.handleChange}
+                        error={errors.password}
                     />
                     {/* <div className="mb-3">
                          <label htmlFor="username" className="form-label">
