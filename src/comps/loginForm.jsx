@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Joi from "joi-browser";
+
 import Input from "./common/input";
 
 class loginForm extends Component {
@@ -10,13 +12,21 @@ class loginForm extends Component {
         errors: {},
     };
 
+    schema = {
+        username: Joi.string().required(),
+        password: Joi.string().required(),
+    };
+
     // React_username = React.createRef();
     // componentDidMount() {
     //     this.React_username.current.focus();
     // }
 
-    validate = () => {
+    validateInputs = () => {
         const { account } = this.state;
+
+        let result = Joi.validate(account, this.schema, { abortEarly: false });
+        console.log(result);
 
         let errors = {};
         if (account.username.trim() === "") {
@@ -35,7 +45,7 @@ class loginForm extends Component {
         // const DOM_username = document.getElementById("username").value;
         // const username = this.React_username.current.value;
 
-        const errors = this.validate();
+        const errors = this.validateInputs();
         this.setState({ errors: errors || {} });
         if (errors) return;
 
