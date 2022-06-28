@@ -58,14 +58,25 @@ class loginForm extends Component {
     };
 
     validateProperty = ({ name, value }) => {
-        if (name === "username") {
-            if (value.trim() === "") return "Username is required!!";
-            //...
-        }
-        if (name === "password") {
-            if (value.trim() === "") return "Password is required!!";
-            //...
-        }
+        // let field = {};
+        // field[name] = value;
+
+        const inputField = { [name]: value };
+        const schema = { [name]: this.schema[name] };
+        // const options = { abortEarly: false };
+        const { error } = Joi.validate(inputField, schema);
+        return error ? error.details[0].message : null;
+        // if (!result.error) return null;
+        // return result.error.details[0].message;
+
+        // if (name === "username") {
+        //     if (value.trim() === "") return "Username is required!!";
+        //     //...
+        // }
+        // if (name === "password") {
+        //     if (value.trim() === "") return "Password is required!!";
+        //     //...
+        // }
     };
 
     // handleChange = (e) => {
