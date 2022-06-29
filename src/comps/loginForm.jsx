@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import Joi from "joi-browser";
 
+import Form from "./common/form";
 import Input from "./common/input";
 
-class loginForm extends Component {
+class loginForm extends Form {
     state = {
-        account: {
+        data: {
             username: "",
             password: "",
         },
@@ -22,78 +23,82 @@ class loginForm extends Component {
     //     this.React_username.current.focus();
     // }
 
-    validateInputs = () => {
-        const { account } = this.state;
-        const options = { abortEarly: false };
+    // validateInputs = () => {
+    //     const { data } = this.state;
+    //     const options = { abortEarly: false };
 
-        let { error } = Joi.validate(account, this.schema, options);
-        // console.log(result);
-        if (!error) return null;
+    //     let { error } = Joi.validate(data, this.schema, options);
+    //     // console.log(result);
+    //     if (!error) return null;
 
-        let errors = {};
-        for (let item of error.details) errors[item.path[0]] = item.message;
+    //     let errors = {};
+    //     for (let item of error.details) errors[item.path[0]] = item.message;
 
-        return errors;
+    //     return errors;
 
-        // if (account.username.trim() === "") {
-        //     errors.username = "Username is required!";
-        // }
-        // if (account.password.trim() === "") {
-        //     errors.password = "Password is required!";
-        // }
-        // return Object.keys(errors).length === 0 ? null : errors;
-    };
+    //     // if (data.username.trim() === "") {
+    //     //     errors.username = "Username is required!";
+    //     // }
+    //     // if (data.password.trim() === "") {
+    //     //     errors.password = "Password is required!";
+    //     // }
+    //     // return Object.keys(errors).length === 0 ? null : errors;
+    // };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
+    // validateProperty = ({ name, value }) => {
+    //     // let field = {};
+    //     // field[name] = value;
 
-        // const DOM_username = document.getElementById("username").value;
-        // const username = this.React_username.current.value;
+    //     const inputField = { [name]: value };
+    //     const schema = { [name]: this.schema[name] };
+    //     // const options = { abortEarly: false };
+    //     const { error } = Joi.validate(inputField, schema);
+    //     return error ? error.details[0].message : null;
+    //     // if (!result.error) return null;
+    //     // return result.error.details[0].message;
 
-        const errors = this.validateInputs();
-        this.setState({ errors: errors || {} });
-        if (errors) return;
+    //     // if (name === "username") {
+    //     //     if (value.trim() === "") return "Username is required!!";
+    //     //     //...
+    //     // }
+    //     // if (name === "password") {
+    //     //     if (value.trim() === "") return "Password is required!!";
+    //     //     //...
+    //     // }
+    // };
 
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     // const DOM_username = document.getElementById("username").value;
+    //     // const username = this.React_username.current.value;
+
+    //     const errors = this.validateInputs();
+    //     this.setState({ errors: errors || {} });
+    //     if (errors) return;
+
+    //     this.doSubmit();
+    // };
+
+    doSubmit = () => {
+        //call Ajax
         console.log("Submit preventDefault");
     };
 
-    validateProperty = ({ name, value }) => {
-        // let field = {};
-        // field[name] = value;
+    // // handleChange = (e) => {
+    // handleChange = ({ currentTarget: input }) => {
+    //     let errors = { ...this.state.errors };
+    //     let errorMessage = this.validateProperty(input);
+    //     if (errorMessage) errors[input.name] = errorMessage;
+    //     else delete errors[input.name];
 
-        const inputField = { [name]: value };
-        const schema = { [name]: this.schema[name] };
-        // const options = { abortEarly: false };
-        const { error } = Joi.validate(inputField, schema);
-        return error ? error.details[0].message : null;
-        // if (!result.error) return null;
-        // return result.error.details[0].message;
-
-        // if (name === "username") {
-        //     if (value.trim() === "") return "Username is required!!";
-        //     //...
-        // }
-        // if (name === "password") {
-        //     if (value.trim() === "") return "Password is required!!";
-        //     //...
-        // }
-    };
-
-    // handleChange = (e) => {
-    handleChange = ({ currentTarget: input }) => {
-        let errors = { ...this.state.errors };
-        let errorMessage = this.validateProperty(input);
-        if (errorMessage) errors[input.name] = errorMessage;
-        else delete errors[input.name];
-
-        let account = { ...this.state.account };
-        // account.username = e.currentTarget.value;
-        account[input.name] = input.value;
-        this.setState({ account, errors });
-    };
+    //     let data = { ...this.state.data };
+    //     // data.username = e.currentTarget.value;
+    //     data[input.name] = input.value;
+    //     this.setState({ data, errors });
+    // };
 
     render() {
-        const { account, errors } = this.state;
+        const { data, errors } = this.state;
         return (
             <div className="container">
                 <h1>Login</h1>
@@ -102,14 +107,14 @@ class loginForm extends Component {
                     <Input
                         name="username"
                         label="Username"
-                        value={account.username}
+                        value={data.username}
                         onChange={this.handleChange}
                         error={errors.username}
                     />
                     <Input
                         name="password"
                         label="Password"
-                        value={account.password}
+                        value={data.password}
                         onChange={this.handleChange}
                         error={errors.password}
                     />
@@ -118,7 +123,7 @@ class loginForm extends Component {
                              Username
                          </label>
                          <input
-                             value={account.username}
+                             value={data.username}
                              onChange={this.handleChange}
                              name="username"
                              // ref={this.React_username}
@@ -132,7 +137,7 @@ class loginForm extends Component {
                             Password
                         </label>
                         <input
-                            value={account.password}
+                            value={data.password}
                             onChange={this.handleChange}
                             name="password"
                             autoFocus
