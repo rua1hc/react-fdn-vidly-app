@@ -141,7 +141,12 @@ class loginForm extends Component {
                             className="form-control"
                         />
                     </div> */}
-                    <button className="btn btn-primary">Login</button>
+                    <button
+                        disabled={this.validateInputs()}
+                        className="btn btn-primary"
+                    >
+                        Login
+                    </button>
                 </form>
             </div>
         );
