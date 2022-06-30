@@ -10,8 +10,8 @@ import Customers from "./comps/customers";
 import NotFound from "./comps/not-found";
 import Rentals from "./comps/rentals";
 import MovieForm from "./comps/movieForm";
-import loginForm from "./comps/loginForm";
-
+import LoginForm from "./comps/loginForm";
+import RegisterForm from "./comps/registerForm";
 import "./App.css";
 
 class App extends Component {
@@ -23,7 +23,8 @@ class App extends Component {
                 <NavBar />
                 <main className="container">
                     <Switch>
-                        <Route path="/login" component={loginForm} />
+                        <Route path="/login" component={LoginForm} />
+                        <Route path="/register" component={RegisterForm} />
 
                         <Route path="/movies/:id" component={MovieForm} />
                         <Route path="/movies" component={Movies} />

@@ -41,6 +41,9 @@ const NavBar = () => {
                         <NavLink className="nav-link" to="/login">
                             Login
                         </NavLink>
+                        <NavLink className="nav-link" to="/register">
+                            Register
+                        </NavLink>
                         {/* <a className="nav-link disabled">Disabled</a> */}
                     </div>
                 </div>

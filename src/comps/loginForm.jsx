@@ -4,7 +4,7 @@ import Joi from "joi-browser";
 import Form from "./common/form";
 // import Input from "./common/input";
 
-class loginForm extends Form {
+class LoginForm extends Form {
     state = {
         data: {
             username: "",
@@ -164,4 +164,4 @@ class loginForm extends Form {
     }
 }
 
-export default loginForm;
+export default LoginForm;
