@@ -2,7 +2,7 @@ import React from "react";
 import Joi from "joi-browser";
 
 import Form from "./common/form";
-import Input from "./common/input";
+// import Input from "./common/input";
 
 class loginForm extends Form {
     state = {
@@ -98,26 +98,30 @@ class loginForm extends Form {
     // };
 
     render() {
-        const { data, errors } = this.state;
+        // const { data, errors } = this.state;
+
         return (
             <div className="container">
                 <h1>Login</h1>
 
                 <form onSubmit={this.handleSubmit}>
-                    <Input
+                    {/* <Input
                         name="username"
                         label="Username"
                         value={data.username}
                         onChange={this.handleChange}
                         error={errors.username}
-                    />
-                    <Input
+                    /> */}
+                    {this.renderInput("username", "Username")}
+                    {/* <Input
                         name="password"
                         label="Password"
                         value={data.password}
                         onChange={this.handleChange}
                         error={errors.password}
-                    />
+                        /> */}
+                    {this.renderInput("password", "Password", "password")}
+
                     {/* <div className="mb-3">
                          <label htmlFor="username" className="form-label">
                              Username
@@ -146,12 +150,14 @@ class loginForm extends Form {
                             className="form-control"
                         />
                     </div> */}
-                    <button
+
+                    {/* <button
                         disabled={this.validateInputs()}
                         className="btn btn-primary"
                     >
                         Login
-                    </button>
+                    </button> */}
+                    {this.renderButton("Login")}
                 </form>
             </div>
         );
