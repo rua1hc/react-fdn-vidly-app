@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { Link } from "react-router-dom";
+
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 
@@ -84,6 +86,11 @@ class Movies extends Component {
         return { totalCount: filtered.length, data: movies };
     };
 
+    handleAddNew = () => {
+        // console.log(this.props);
+        this.props.history.push("/movies/new");
+    };
+
     render() {
         const { length: count } = this.state.movies;
         const { pageSize, currentPage, genres, selectedGenre, sortColumn } =
@@ -104,6 +111,10 @@ class Movies extends Component {
                 </div>
 
                 <div className="col">
+                    <Link to="/movies/new" className="btn btn-primary my-3">
+                        New Movie
+                    </Link>
+
                     <p>Showing {totalCount} movies in DB.</p>
 
                     <MoviesTable
