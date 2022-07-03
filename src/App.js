@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 // import logo from './logo.svg';
+import { ToastContainer } from "react-toastify";
 
 import Movies from "./comps/movies";
-
 import NavBar from "./comps/navBar";
 import Customers from "./comps/customers";
 import NotFound from "./comps/not-found";
@@ -12,6 +12,8 @@ import Rentals from "./comps/rentals";
 import MovieForm from "./comps/movieForm";
 import LoginForm from "./comps/loginForm";
 import RegisterForm from "./comps/registerForm";
+
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 class App extends Component {
@@ -20,6 +22,7 @@ class App extends Component {
     render() {
         return (
             <React.Fragment>
+                <ToastContainer />
                 <NavBar />
                 <main className="container">
                     <Switch>

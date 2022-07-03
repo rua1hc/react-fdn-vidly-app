@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
+import genreService from "../services/genreService";
 
 // import Like from "./common/like";
 import ListGroup from "./common/listGroup";
@@ -28,6 +29,9 @@ class Movies extends Component {
     };
 
     componentDidMount() {
+        console.log(genreService.getGenres());
+
+        // const genres = [{ name: "All Genres" }, ...getGenres()];
         const genres = [{ name: "All Genres" }, ...getGenres()];
         this.setState({ movies: getMovies(), genres });
     }
