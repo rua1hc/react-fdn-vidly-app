@@ -48,6 +48,7 @@ class MovieForm extends Form {
 
     mapToViewModel(movie) {
         return {
+            _id: movie._id,
             title: movie.title,
             genreId: movie.genre._id,
             numberInStock: movie.numberInStock,
@@ -56,6 +57,7 @@ class MovieForm extends Form {
     }
 
     schema = {
+        _id: Joi.string(),
         title: Joi.string().required().label("Title"),
         genreId: Joi.string().required().label("Genre"),
         numberInStock: Joi.number()
