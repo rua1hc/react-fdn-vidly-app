@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { getMovies } from "../services/fakeMovieService";
-import { getGenres } from "../services/fakeGenreService";
-import genreService from "../services/genreService";
+// import { getGenres } from "../services/fakeGenreService";
+import { getGenres } from "../services/genreService";
 
 // import Like from "./common/like";
 import ListGroup from "./common/listGroup";
@@ -28,11 +28,11 @@ class Movies extends Component {
         genres: [],
     };
 
-    componentDidMount() {
-        console.log(genreService.getGenres());
+    async componentDidMount() {
+        const { data } = await getGenres();
 
         // const genres = [{ name: "All Genres" }, ...getGenres()];
-        const genres = [{ name: "All Genres" }, ...getGenres()];
+        const genres = [{ name: "All Genres" }, ...data];
         this.setState({ movies: getMovies(), genres });
     }
 
