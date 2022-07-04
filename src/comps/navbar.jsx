@@ -2,9 +2,9 @@ import React from "react";
 
 import { Link, NavLink } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
     return (
-        <nav className="navbar navbar-expand-sm navbar-light bg-light">
+        <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
                     Navbar
@@ -24,7 +24,7 @@ const NavBar = () => {
                     className="collapse navbar-collapse"
                     id="navbarNavAltMarkup"
                 >
-                    <div className="navbar-nav">
+                    <div className="navbar-nav ">
                         <NavLink
                             className="nav-link "
                             aria-current="page"
@@ -38,12 +38,26 @@ const NavBar = () => {
                         <NavLink className="nav-link" to="/rentals">
                             Rentals
                         </NavLink>
-                        <NavLink className="nav-link" to="/login">
-                            Login
-                        </NavLink>
-                        <NavLink className="nav-link" to="/register">
-                            Register
-                        </NavLink>
+                        {!user && (
+                            <React.Fragment>
+                                <NavLink className="nav-link" to="/login">
+                                    Login
+                                </NavLink>
+                                <NavLink className="nav-link" to="/register">
+                                    Register
+                                </NavLink>
+                            </React.Fragment>
+                        )}
+                        {user && (
+                            <React.Fragment>
+                                <NavLink className="nav-link" to="/profile">
+                                    {user.name}
+                                </NavLink>
+                                <NavLink className="nav-link" to="/logout">
+                                    Logout
+                                </NavLink>
+                            </React.Fragment>
+                        )}
                         {/* <a className="nav-link disabled">Disabled</a> */}
                     </div>
                 </div>
