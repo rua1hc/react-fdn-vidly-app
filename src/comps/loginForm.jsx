@@ -1,8 +1,11 @@
 import React from "react";
 import Joi from "joi-browser";
+import { toast } from "react-toastify";
 
 import Form from "./common/form";
 // import Input from "./common/input";
+
+import * as authService from "../services/authService";
 
 class LoginForm extends Form {
     state = {
@@ -14,7 +17,7 @@ class LoginForm extends Form {
     };
 
     schema = {
-        username: Joi.string().required().label("Username"),
+        username: Joi.string().email().required().label("Username email"),
         password: Joi.string().required().label("Password"),
     };
 
@@ -79,8 +82,20 @@ class LoginForm extends Form {
     //     this.doSubmit();
     // };
 
-    doSubmit = () => {
-        //call Ajax
+    doSubmit = async () => {
+        const { username, password } = this.state.data;
+
+        try {
+            const jsonWebToken = await authService.login(username, password);
+        } catch (ex) {
+            if (ex.response && ex.response.status === 400) {
+                const errors = { ...this.state.errors };
+                errors.username = ex.response.data;
+                this.setState({ errors });
+                // toast.error("Invalid username or password!");
+            }
+        }
+
         console.log("Submit preventDefault");
     };
 
@@ -112,7 +127,7 @@ class LoginForm extends Form {
                         onChange={this.handleChange}
                         error={errors.username}
                     /> */}
-                    {this.renderInput("username", "Username")}
+                    {this.renderInput("username", "Username email")}
                     {/* <Input
                         name="password"
                         label="Password"
