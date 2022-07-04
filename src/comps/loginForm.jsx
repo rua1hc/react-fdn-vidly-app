@@ -86,7 +86,9 @@ class LoginForm extends Form {
         const { username, password } = this.state.data;
 
         try {
-            const jsonWebToken = await authService.login(username, password);
+            const { data } = await authService.login(username, password);
+            localStorage.setItem("token", data);
+            this.props.history.push("/");
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
                 const errors = { ...this.state.errors };
