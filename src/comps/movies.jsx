@@ -128,6 +128,7 @@ class Movies extends Component {
         const { length: count } = this.state.movies;
         const { pageSize, currentPage, genres, selectedGenre, sortColumn } =
             this.state;
+        const { user } = this.props;
 
         let { totalCount, data: movies } = this.getPagedData();
 
@@ -144,9 +145,11 @@ class Movies extends Component {
                 </div>
 
                 <div className="col">
-                    <Link className="btn btn-primary my-3" to="/movies/new">
-                        New Movie
-                    </Link>
+                    {user && (
+                        <Link className="btn btn-primary my-3" to="/movies/new">
+                            New Movie
+                        </Link>
+                    )}
 
                     <p>Showing {totalCount} movies in DB.</p>
 
