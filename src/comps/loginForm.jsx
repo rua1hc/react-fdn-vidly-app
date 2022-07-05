@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import Form from "./common/form";
 // import Input from "./common/input";
 
-import * as authService from "../services/authService";
+import * as auth from "../services/authService";
 
 class LoginForm extends Form {
     state = {
@@ -86,8 +86,7 @@ class LoginForm extends Form {
         const { username, password } = this.state.data;
 
         try {
-            const { data } = await authService.login(username, password);
-            localStorage.setItem("token", data);
+            await auth.login(username, password);
             // this.props.history.push("/");
             window.location = "/";
         } catch (ex) {

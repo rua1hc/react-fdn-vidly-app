@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 import Form from "./common/form";
 import { register } from "../services/userService";
+import auth from "../services/authService";
 
 class RegisterForm extends Form {
     state = {
@@ -26,7 +27,8 @@ class RegisterForm extends Form {
 
         try {
             const { headers } = await register(user);
-            localStorage.setItem("token", headers["x-auth-token"]);
+            // localStorage.setItem("token", headers["x-auth-token"]);
+            auth.loginWithJwt(headers["x-auth-token"]);
             // this.props.history.push("/");
             window.location = "/";
         } catch (ex) {
