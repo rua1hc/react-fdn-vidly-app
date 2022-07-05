@@ -17,6 +17,7 @@ import auth from "./services/authService";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import { register } from "./services/userService";
 
 class App extends Component {
     state = {};
@@ -35,25 +36,31 @@ class App extends Component {
     }
 
     render() {
+        const { user } = this.state;
         return (
             <React.Fragment>
                 <ToastContainer />
-                <NavBar user={this.state.user} />
+                <NavBar user={user} />
                 <main className="container">
                     <Switch>
                         <Route path="/login" component={LoginForm} />
                         <Route path="/register" component={RegisterForm} />
                         <Route path="/logout" component={Logout} />
 
-                        {/* <Route path="/movies/new" render={(props)=><MovieForm {...props}/>} /> */}
-                        {/* <Route path="/movies/new" component={MovieForm} /> */}
-                        <Route path="/movies/:id" component={MovieForm} />
+                        {/* <Route path="/movies/:id" component={MovieForm} /> */}
+                        <Route
+                            path="/movies/:id"
+                            render={(props) => {
+                                if (!user) return <Redirect to="/login" />;
+                                return <MovieForm {...props} />;
+                            }}
+                        />
 
                         {/* <Route path="/movies" component={Movies} /> */}
                         <Route
                             path="/movies"
                             render={(props) => (
-                                <Movies {...props} user={this.state.user} />
+                                <Movies {...props} user={user} />
                             )}
                         />
 
