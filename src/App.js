@@ -13,6 +13,7 @@ import MovieForm from "./comps/movieForm";
 import LoginForm from "./comps/loginForm";
 import RegisterForm from "./comps/registerForm";
 import Logout from "./comps/logout";
+import ProtectedRoute from "./comps/common/protectedRoute";
 import auth from "./services/authService";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -54,6 +55,10 @@ class App extends Component {
                                 if (!user) return <Redirect to="/login" />;
                                 return <MovieForm {...props} />;
                             }}
+                        />
+                        <ProtectedRoute
+                            path="/movies/:id"
+                            component={MovieForm}
                         />
 
                         {/* <Route path="/movies" component={Movies} /> */}
