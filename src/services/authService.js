@@ -1,9 +1,10 @@
 import jwtDecode from "jwt-decode";
 
-import config from "../config.json";
 import http from "./httpService";
+// import config from "../config.json";
 
-const apiEndpoint = config.apiUrl + "/auth";
+// const apiEndpoint = config.apiUrl + "/auth";
+const apiEndpoint = "/auth";
 const tokenKey = "token";
 
 //====================
