@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 // import logo from './logo.svg';
 
 import Movies from "./comps/movies";
-import NavBar from "./comps/navBar";
+import NavBar from "./comps/navBar_new";
 import Customers from "./comps/customers";
 import NotFound from "./comps/not-found";
 import Rentals from "./comps/rentals";
@@ -18,7 +18,6 @@ import auth from "./services/authService";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import { register } from "./services/userService";
 
 class App extends Component {
     state = {};
